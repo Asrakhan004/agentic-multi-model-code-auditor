@@ -1,0 +1,20 @@
+
+# API keys and environment variables
+.env
+.env.*
+
+# Python virtual environment
+venv/
+.venv/
+
+# Python-generated files
+__pycache__/
+*.py[cod]
+
+# Local logs and evaluation output
+logs/
+evaluation_results.csv
+
+# Editor and operating-system files
+.vscode/
+.DS_Store

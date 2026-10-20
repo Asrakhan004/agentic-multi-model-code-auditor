@@ -1,0 +1,67 @@
+[
+  {
+    "id": "SEC-01",
+    "category": "security",
+    "description": "SQL query built with string concatenation",
+    "code": "def get_user(db, user_id):\n    query = 'SELECT * FROM users WHERE id=' + user_id\n    return db.execute(query)",
+    "expected_issue": "sql_injection",
+    "should_flag": true
+  },
+  {
+    "id": "SEC-02",
+    "category": "security",
+    "description": "Parameterized SQL query",
+    "code": "def get_user(db, user_id):\n    query = 'SELECT * FROM users WHERE id = ?'\n    return db.execute(query, (user_id,))",
+    "expected_issue": "none",
+    "should_flag": false
+  },
+  {
+    "id": "BUG-01",
+    "category": "correctness",
+    "description": "Undefined variable",
+    "code": "def calculate_total(price, quantity):\n    return price * quantity + tax",
+    "expected_issue": "undefined_variable",
+    "should_flag": true
+  },
+  {
+    "id": "BUG-02",
+    "category": "correctness",
+    "description": "Simple valid calculation",
+    "code": "def calculate_total(price, quantity, tax):\n    return price * quantity + tax",
+    "expected_issue": "none",
+    "should_flag": false
+  },
+  {
+    "id": "SEC-03",
+    "category": "security",
+    "description": "Hardcoded password",
+    "code": "def connect():\n    password = 'admin123'\n    return password",
+    "expected_issue": "hardcoded_secret",
+    "should_flag": true
+  },
+  {
+    "id": "SEC-04",
+    "category": "security",
+    "description": "Safe arithmetic with no security issue",
+    "code": "def calculate_discount(price, rate):\n    return price * rate",
+    "expected_issue": "none",
+    "should_flag": false
+  },
+  {
+    "id": "BUG-03",
+    "category": "correctness",
+    "description": "Division by zero",
+    "code": "def calculate_average(total, count):\n    return total / count",
+    "expected_issue": "division_by_zero",
+    "should_flag": true
+  },
+  {
+  "id": "BUG-04",
+  "category": "correctness",
+  "description": "Safe division with zero check",
+  "code": "def calculate_average(total, count):\n    if count == 0:\n        return 0\n    return total / count",
+  "expected_issue": "none",
+  "check_for_issue": "division_by_zero",
+  "should_flag": false
+}
+]
